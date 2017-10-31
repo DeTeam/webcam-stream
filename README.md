@@ -459,3 +459,11 @@ Try failing to login more than 10 times — your IP should be banned (no worries
 ## Port-forwarding
 
 Finally, to make things available you might need to setup port forwarding in your router for the port 8080 to your Raspberry Pi IP address. **Make sure to only forward port 8080**.
+
+## Credits
+
+* Arigato to peer5 for a nice article on streaming hls
+* Gracias to Jason Kölker from JungleDisk for posting some info on MPEG-DASH streaming
+* Dan Peddle suggested using fail2ban, merci!
+* Thanks to Denis Rechkunov for doing some sanity checks
+* DigitalOcean came in super handy with some articles on basic nginx setup, thanks
