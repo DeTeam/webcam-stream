@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>webcam-stream</title>
+        <meta charset="utf-8" />
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+    </head>
+    <body>
+        <div id="player">
+
+        </div>
+        <script>
+            var player = new Clappr.Player({
+                source: "/hls/stream.m3u8",
+                parentId: "#player",
+                maxBufferLength: 10,
+                width: 640,
+                height: 360
+            });
+        </script>
+    </body>
+</html>
