@@ -6,6 +6,20 @@ Worth mentioning, even though the solution seem rather stable, it is DYI thing a
 
 We can split our journey in several blocks, each one adds up to our end-goal: having secure enough HLS webcam streaming service with your raspberry.
 
+
+## Table of Contents
+
+1. [Prerequisites](#prerequisites)
+
+1. [Components explained](#components-explained)
+1. [Bulding nginx](#bulding-nginx)
+1. [Configuring nginx](#configuring-nginx)
+1. [Building FFmpeg](#building-ffmpeg)
+1. [Configuring systemd service for FFmpeg](#configuring-systemd-service-for-ffmpeg)
+1. [Basic auth](#basic-auth)
+1. [Fail2ban configuration](#fail2ban-configuration)
+1. [Port-forwarding](#port-forwarding)
+
 ## Prerequisites
 
 Of course, first of all you'll need a raspberry pi together with some accessories: power/usb-cable, usb wifi module or LAN-cable and a webcam.
