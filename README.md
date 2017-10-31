@@ -1,8 +1,8 @@
 # Webcam streaming with raspberry pi
 
-Below you can find steps I took in order to setup by old raspberry pi (original, Model B) as a webcam HLS streaming service. Both the sreaming and the index.html are protected with basic authentication and Fail2ban on top.
+Below you can find steps I took in order to setup by old raspberry pi (original, Model B) as a webcam HLS streaming service. Both the streaming and the index.html are protected with basic authentication and Fail2ban on top.
 
-Worth mentioning, even though the solution seem rather stable, it is DYI thing and I would not recommend relying on it for life-critical use-cases. If your goal is just to satisfy your curiousity — go ahead.
+Worth mentioning, even though the solution seem rather stable, it is DYI thing and I would not recommend relying on it for life-critical use-cases. If your goal is just to satisfy your curiosity — go ahead.
 
 We can split our journey in several blocks, each one adds up to our end-goal: having secure enough HLS webcam streaming service with your raspberry.
 
@@ -12,7 +12,7 @@ We can split our journey in several blocks, each one adds up to our end-goal: ha
 1. [Prerequisites](#prerequisites)
 
 1. [Components explained](#components-explained)
-1. [Bulding nginx](#bulding-nginx)
+1. [Building nginx](#building-nginx)
 1. [Configuring nginx](#configuring-nginx)
 1. [Building FFmpeg](#building-ffmpeg)
 1. [Configuring systemd service for FFmpeg](#configuring-systemd-service-for-ffmpeg)
@@ -45,7 +45,7 @@ Then we configure some basic authentication and protect it with some Fail2ban in
 As an optional item (not covered here), you could also setup some dynamic dns in order to access your video stream from the internet, using your mobile device, in a convenient way.
 
 
-## Bulding nginx
+## Building nginx
 
 Because we need nginx-rtmp-module we can't just install nginx as usual from the repository. We need to build nginx. [This article](https://docs.peer5.com/guides/setting-up-hls-live-streaming-server-using-nginx/) from peer5 turned very handy explaining all the necessary steps. I'll post some of them here, modifying it slightly.
 
@@ -102,7 +102,7 @@ cd nginx-1.12.2
     --add-module=../nginx-rtmp-module
 ```
 
-Once it's done we want to go an interesting way. Normally one'd run `make` command and wait for results. We're gonna do it differently. Since we're running things via ssh and `make` for nginx (and ffmpeg, below) will take quite some time (could be more than an hour, depending on your raspbery CPUs), we're gonna run `make` using nohup in the background.
+Once it's done we want to go an interesting way. Normally one'd run `make` command and wait for results. We're gonna do it differently. Since we're running things via ssh and `make` for nginx (and ffmpeg, below) will take quite some time (could be more than an hour, depending on your raspberry CPUs), we're gonna run `make` using nohup in the background.
 
 **If you have more than one CPU on your raspberry, benefit from it and add it with `-j` parameter (second example).**
 
@@ -272,7 +272,7 @@ Alright, now we need to actually grab some video. The tool we're going to use fo
 
 I used [this article](https://www.jungledisk.com/blog/2017/07/03/live-streaming-mpeg-dash-with-raspberry-pi-3/) from jungledisk and [this reddit post](https://www.reddit.com/r/raspberry_pi/comments/5677qw/hardware_accelerated_x264_encoding_with_ffmpeg/) while building ffmpeg, here's the summary of commands you'd have to run.
 
-\* *in the article there's a different streaming format used at the end — MPEG-DASH. I also tried it out, though it doesn't seem to work on iOS devices, which is an issue for me — thus, swirtched to HLS.*
+\* *in the article there's a different streaming format used at the end — MPEG-DASH. I also tried it out, though it doesn't seem to work on iOS devices, which is an issue for me — thus, switched to HLS.*
 
 ```sh
 sudo apt-get update
@@ -312,12 +312,12 @@ Done, `ffmpeg` command should be available on your `$PATH` now. To check if ever
 ffmpeg -i /dev/video0 -c:v h264_omx -c:a copy -b:v 1500k test.mp4
 ```
 
-Once this done, there should be a `test.mp4` file in your directory available. You can retreive it using `scp` or `rsync` (covered in various raspberry pi tutorials). Play it and you should see what your camera recorded during few seconds you let it run.
+Once this done, there should be a `test.mp4` file in your directory available. You can retrieve it using `scp` or `rsync` (covered in various raspberry pi tutorials). Play it and you should see what your camera recorded during few seconds you let it run.
 
 
 ## Configuring systemd service for FFmpeg
 
-Now we're going to make sure our webcam is streaming what we need and does it everytime you boot your raspberry pi. For that we're going to create a systemd service.
+Now we're going to make sure our webcam is streaming what we need and does it every time you boot your raspberry pi. For that we're going to create a systemd service.
 
 Simply create a file named `webcam-stream.service` in `/etc/systemd/system` and will it with the following content:
 
