@@ -19,6 +19,7 @@ We can split our journey in several sections, each one adds up to our end-goal: 
 1. [Basic auth](#basic-auth)
 1. [Fail2ban configuration](#fail2ban-configuration)
 1. [Port-forwarding](#port-forwarding)
+1. [HTTPs](#https)
 
 ## Prerequisites
 
@@ -456,14 +457,27 @@ sudo fail2ban-client set nginx-http-auth unbanip 1.1.1.1 # some IP
 
 Try failing to login more than 10 times — your IP should be banned (no worries, you should be able to SSH and unban yourself).
 
+
 ## Port-forwarding
 
 Finally, to make things available you might need to setup port forwarding in your router for the port 8080 to your Raspberry Pi IP address. **Make sure to only forward port 8080**.
 
+## HTTPs
+
+At this stage we have our stream available whenever you switch on your Raspberry Pi and plug in the webcamera. The way we authenticate with the website is simple, however it's not secure enough yet. We use http, however it would be best to set things up using https.
+
+There're several way to go:
+
+- Use some sort of dynamic DNS service
+- Configure your own domain & use letsencrypt ([tutorial](https://www.stewright.me/2017/01/add-ssl-nginx-site-free-lets-encrypt/) to try out, [another one](https://letsecure.me/secure-web-deployment-with-lets-encrypt-and-nginx/))
+- Use [ngrok](https://ngrok.com)
+
+If you use plain http, it's likely that you'll leak your credentials and someone might have access to a camera in a place you care about.
+
 ## Credits
 
-* Arigato to peer5 for a nice article on streaming hls
-* Gracias to Jason Kölker from JungleDisk for posting some info on MPEG-DASH streaming
-* Dan Peddle suggested using fail2ban, merci!
-* Thanks to Denis Rechkunov for doing some sanity checks
-* DigitalOcean came in super handy with some articles on basic nginx setup, thanks
+* Arigato to peer5 for a [nice article](https://docs.peer5.com/guides/setting-up-hls-live-streaming-server-using-nginx/) on streaming hls
+* Gracias to Jason Kölker from JungleDisk for [posting some info](https://www.jungledisk.com/blog/2017/07/03/live-streaming-mpeg-dash-with-raspberry-pi-3/) on MPEG-DASH streaming
+* [Dan Peddle](https://flarework.com/) suggested using fail2ban, merci!
+* Thanks to [Denis Rechkunov](http://pragmader.me/) for doing some sanity checks
+* [DigitalOcean](https://www.digitalocean.com/community/) came in super handy with some articles on basic nginx setup, thanks
