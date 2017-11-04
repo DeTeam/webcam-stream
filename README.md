@@ -12,3 +12,11 @@ It's important that:
 * Information stays up to date
 * Security is covered so that private info is not exposed
 * Steps are straightforward enough and don't require very deep knowledge of underlying tools
+
+## Credits
+
+* Arigato to peer5 for a [nice article](https://docs.peer5.com/guides/setting-up-hls-live-streaming-server-using-nginx/) on streaming hls
+* Gracias to Jason Kölker from JungleDisk for [posting some info](https://www.jungledisk.com/blog/2017/07/03/live-streaming-mpeg-dash-with-raspberry-pi-3/) on MPEG-DASH streaming
+* [Dan Peddle](https://flarework.com/) suggested using fail2ban, merci!
+* Thanks to [Denis Rechkunov](http://pragmader.me/) for doing some sanity checks
+* [DigitalOcean](https://www.digitalocean.com/community/) came in super handy with some articles on basic nginx setup, thanks
