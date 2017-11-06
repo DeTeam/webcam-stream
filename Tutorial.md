@@ -469,7 +469,7 @@ At this stage we have our stream available whenever you switch on your Raspberry
 There're several way to go:
 
 - Use some sort of dynamic DNS service
-- Configure your own domain & use letsencrypt ([tutorial](https://www.stewright.me/2017/01/add-ssl-nginx-site-free-lets-encrypt/) to try out, [another one](https://letsecure.me/secure-web-deployment-with-lets-encrypt-and-nginx/))
+- Configure your own domain & use letsencrypt ([certbot client](https://certbot.eff.org/#pip-nginx), [tutorial](https://www.stewright.me/2017/01/add-ssl-nginx-site-free-lets-encrypt/) to try out, [another one](https://letsecure.me/secure-web-deployment-with-lets-encrypt-and-nginx/))
 - Use [ngrok](https://ngrok.com)
 
 If you use plain http, it's likely that you'll leak your credentials and someone might have access to a camera in a place you care about.
