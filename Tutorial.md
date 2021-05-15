@@ -10,9 +10,9 @@ We can split our journey in several sections, each one adds up to our end-goal: 
 ## Table of Contents
 
 1. [Prerequisites](#prerequisites)
-
 1. [Components explained](#components-explained)
 1. [Building nginx](#building-nginx)
+1. [Creating nginx unit file for systemd](#creating-nginx-unit-file-for-systemd)
 1. [Configuring nginx](#configuring-nginx)
 1. [Building FFmpeg](#building-ffmpeg)
 1. [Configuring systemd service for FFmpeg](#configuring-systemd-service-for-ffmpeg)
@@ -134,6 +134,39 @@ Once we're done, let's install our nginx so we can finally use it globally:
 ```sh
 sudo make install
 ```
+
+## Creating nginx unit file for systemd
+
+After installing nginx, it can be started as a systemd service. But generally nginx tar ball does not come with the unit file for the systemd. 
+Therefore, we have to create unit file and put it at `/lib/systemd/system/` 
+
+Create file with name `nginx.service` with the following content:
+
+```
+[Unit]
+Description=The NGINX HTTP and reverse proxy server
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+PIDFile=/run/nginx.pid
+ExecStartPre=/usr/sbin/nginx -t
+ExecStart=/usr/sbin/nginx
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+
+```
+After putting it at `/lib/systemd/system` we just need to enable our new service:
+
+```
+sudo systemctl enable nginx
+sudo systemctl daemon-reload
+```
+
 
 ## Configuring nginx
 
