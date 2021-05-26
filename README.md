@@ -20,3 +20,4 @@ It's important that:
 * [Dan Peddle](https://flarework.com/) suggested using fail2ban, merci!
 * Thanks to [Denis Rechkunov](http://pragmader.me/) for doing some sanity checks
 * [DigitalOcean](https://www.digitalocean.com/community/) came in super handy with some articles on basic nginx setup, thanks
+* Thanks to [@ishansheth](https://github.com/ishansheth) for adding a section on systemd part for nginx
