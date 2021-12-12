@@ -18,6 +18,6 @@ It's important that:
 * Arigato to peer5 for a [nice article](https://docs.peer5.com/guides/setting-up-hls-live-streaming-server-using-nginx/) on streaming hls
 * Gracias to Jason Kölker from JungleDisk for [posting some info](https://www.jungledisk.com/blog/2017/07/03/live-streaming-mpeg-dash-with-raspberry-pi-3/) on MPEG-DASH streaming
 * [Dan Peddle](https://flarework.com/) suggested using fail2ban, merci!
-* Thanks to [Denis Rechkunov](http://pragmader.me/) for doing some sanity checks
+* Thanks to [Denis Rechkunov](https://rdner.de/) for doing some sanity checks
 * [DigitalOcean](https://www.digitalocean.com/community/) came in super handy with some articles on basic nginx setup, thanks
 * Thanks to [@ishansheth](https://github.com/ishansheth) for adding a section on systemd part for nginx
